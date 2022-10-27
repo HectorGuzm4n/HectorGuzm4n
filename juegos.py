@@ -7,15 +7,38 @@ print("Catana (3)")
 print("RPG (4)")
 print("Barret (5)")
 
-vida= 100
 arma1= float(input())
-curacion1= 15+vida
-creditos= 0
+
+if arma1==1:
+    import random
+    from re import A
+    daño1= random.randint (1,25)
 
 
-import random
-from re import A
-daño1= random.randint (1,25)
+if arma1==2:
+    import random
+    from re import A
+    daño1= random.randint (1,10)
+
+
+if arma1==3:
+    import random
+    from re import A
+    daño1= random.randint (5,30)
+
+
+if arma1==4:
+    import random
+    from re import A
+    daño1= random.randint (25,30)
+
+
+if arma1==5:
+    import random
+    from re import A
+    daño1= random.randint (2,20)
+
+daño2= random.randint (5,25)
 
 if arma1== 1:
     print ("buena elección")
@@ -43,16 +66,80 @@ print("Suerte")
 print("el objetivo es derrotar a todos los enemigos y sobrevivir a cualquier costo")
 
 print (" te has encontrado con tu primer enemigo")
-print("presiona (a) para atacar")
 
-def act():
-    accion= input()
-    if accion==("a"):
-        bot1= 25-daño1
-        print("el enemigo esta a ", bot1, "de vida")
-    if accion==("c"):
-        vida= curacion1
-        print("vida: ", vida)
 
-act()
+def pelea1():
+    import random
+    bot= random.randint(10,25)
+    curas=10
+    print("(a) atacar")
+    print("(c) curarse")
+    print("(e) escapar")
 
+    print("vida del enemigo: ", bot)
+    print("curaciones: ", curas)
+
+    vida=100
+    while bot>0 and vida>0 or accion!=("e"):
+        accion= input()
+
+        if accion==("e"):
+            print("La probabilidad de escapar en de un 25%")
+            import random
+            escape= random.randint(1,4)
+            if escape==1:
+                print("escape exitoso")
+                break
+            if escape==2 or escape==3 or escape==4:
+                print("fallaste")
+                print("Hora de sufrir")
+            
+
+        if accion==("a"):
+         bot= bot-daño1
+         if bot>0:
+            print("vida: ", vida)
+            print("Vida restante del enemigo: ", bot)
+
+        if bot>0:
+            vida= vida-daño2
+            print ("El enemigo te ha disparado")
+            print("vida: ", vida)
+        
+        if accion==("c"):
+            if vida<100 and curas>=1:
+                vida=vida+15
+                curas=curas-1
+                print ("te has curado")
+                print("curaciones: ",curas)
+                print("Vida: ", vida)
+            if vida>=100:
+                print ("ya tienes el maximo de vida")
+        
+        if vida <=0:
+            print ("Que bot")
+            quit()
+            
+        if bot<=0:
+            print ("enemigo derrotado")
+            print ("vida: ", vida)
+            print("curaciones: ",curas)
+            import random
+            bono= random.randint(50,150)
+            global creditos
+            creditos=0
+            creditos=creditos + bono
+            print ("creditos: ", creditos)
+            break
+
+pelea1()
+
+print ("Bien hecho soldado")
+print("Acabas de sobrevivir a tu primera pelea")
+print("Si deseas ir al refugio puedes hacerlo para mejorar tus armas, pero no puedes quedarte ahi para siempre")
+
+print("(q) Continuar")
+print("(c) Curarse")
+print("(r) Refugio")
+
+desicion=input()
